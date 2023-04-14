@@ -8,6 +8,53 @@
     <title>Expense Tracker</title>
   </head>
   <body>
+    <header>
+      <h1>Expense Tracker</h1>
+    </header>
+    <main>
+      <div class="bg">
+        <div class="flex-container">
+          <section id="balanceDisplay" class="balance-display">
+            <div>
+              <h2>YOUR BALANCE</h2>
+              <p>$999</p>
+            </div>
+            <div>
+              <div>
+                <h3>INCOME</h3>
+                <p>Income Total</p>
+              </div>
+              <div>
+                <h3>EXPENSE</h3>
+                <p>Expense Total</p>
+              </div>
+            </div>
+          </section>
+          <section id="expenseHistory" class="expense-history">
+            <h2>History</h2>
+            <div class="expense">
+              <p>Shoes</p>
+            </div>
+            <div class="income">
+              <p>Pay</p>
+            </div>
+          </section>
+          <section id="newExpense" class="new-expense">
+            <h2 class="transaction-head">Add new transaction</h2>
+            <h4 class="description-heading">Transaction Description</h4>
+            <input
+              id="transactionInput"
+              class="transaction-input"
+              type="text"
+            />
+            <h4 class="amount-heading">Amount</h4>
+            <p>For an expense use a negative symbol</p>
+            <input type="text" name="amount-input" id="amountInput" />
+            <button id="addButton" class="add-button">Add Transaction</button>
+          </section>
+        </div>
+      </div>
+    </main>
     <script src="script.js"></script>
   </body>
 </html>
