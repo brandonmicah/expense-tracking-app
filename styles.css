@@ -80,8 +80,8 @@ select {
 header {
   text-align: center;
 }
-
-h1 {
+body {
+  background-color: #eeeeee;
 }
 
 .bg {
@@ -89,4 +89,94 @@ h1 {
   justify-content: center;
   border: 2px solid black;
   text-align: center;
+}
+
+.balance-display {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  margin-bottom: -1rem;
+}
+
+.balance-total {
+  font-size: 2rem;
+  color: green;
+}
+
+.income-total {
+  letter-spacing: 1px;
+  color: green;
+}
+
+.expense-total {
+  color: red;
+  letter-spacing: 1px;
+}
+
+.balance-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  border-radius: 5px;
+  margin: 2px;
+  height: 6rem;
+}
+
+.your-balance {
+  grid-column: span 2;
+}
+
+.expense-history {
+  text-align: left;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.transaction-head {
+  text-align: left;
+}
+
+section {
+  margin: 2rem 0;
+}
+
+.new-expense {
+  text-align: left;
+  margin: 0 1rem;
+}
+
+.add-button {
+  display: block;
+  width: 100%;
+  background-color: red;
+  border: 2px solid black;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border-radius: 3px;
+}
+
+input {
+  width: 100%;
+}
+
+.u-line {
+  border-bottom: 2px solid gray;
+}
+
+.expense,
+.income {
+  margin: 10px 0;
+  color: gray;
+  font-weight: 400;
+  background-color: white;
+  box-shadow: 3px 3px 0;
+  padding-left: 2px;
+}
+
+.input-div {
+  margin: 1rem 0;
+}
+
+.hidden {
+  display: none;
 }

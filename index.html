@@ -15,23 +15,23 @@
       <div class="bg">
         <div class="flex-container">
           <section id="balanceDisplay" class="balance-display">
-            <div>
+            <div class="your-balance">
               <h2>YOUR BALANCE</h2>
-              <p>$999</p>
+              <p class="balance-total">$999</p>
             </div>
-            <div>
-              <div>
-                <h3>INCOME</h3>
-                <p>Income Total</p>
-              </div>
-              <div>
-                <h3>EXPENSE</h3>
-                <p>Expense Total</p>
-              </div>
+
+            <div class="balance-box left">
+              <h3>INCOME</h3>
+              <p class="income-total">Income Total</p>
+            </div>
+
+            <div class="balance-box left">
+              <h3>EXPENSE</h3>
+              <p class="expense-total">Expense Total</p>
             </div>
           </section>
           <section id="expenseHistory" class="expense-history">
-            <h2>History</h2>
+            <h2 class="history-headings u-line">History</h2>
             <div class="expense">
               <p>Shoes</p>
             </div>
@@ -40,16 +40,20 @@
             </div>
           </section>
           <section id="newExpense" class="new-expense">
-            <h2 class="transaction-head">Add new transaction</h2>
-            <h4 class="description-heading">Transaction Description</h4>
-            <input
-              id="transactionInput"
-              class="transaction-input"
-              type="text"
-            />
-            <h4 class="amount-heading">Amount</h4>
-            <p>For an expense use a negative symbol</p>
-            <input type="text" name="amount-input" id="amountInput" />
+            <h2 class="transaction-head u-line">Add new transaction</h2>
+            <div class="input-div">
+              <h4 class="description-heading">Transaction Description</h4>
+              <input
+                id="transactionInput"
+                class="transaction-input"
+                type="text"
+              />
+            </div>
+            <div class="input-div">
+              <h4 class="amount-heading">Amount</h4>
+              <p>For an expense use a negative symbol</p>
+              <input type="text" name="input" id="amountInput" />
+            </div>
             <button id="addButton" class="add-button">Add Transaction</button>
           </section>
         </div>
