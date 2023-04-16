@@ -87,7 +87,6 @@ body {
 .bg {
   display: flex;
   justify-content: center;
-  border: 2px solid black;
   text-align: center;
 }
 
@@ -171,6 +170,8 @@ input {
   background-color: white;
   box-shadow: 3px 3px 0;
   padding-left: 2px;
+  display: flex;
+  height: 1.5rem;
 }
 
 .input-div {
@@ -179,4 +180,28 @@ input {
 
 .hidden {
   display: none;
+}
+
+.amount,
+.description {
+  display: flex;
+  margin-left: 0.5rem;
+}
+
+.amount {
+  margin-left: auto;
+}
+
+.expense .amount {
+  border-right: 10px solid red;
+  color: black;
+  border-radius: 2px;
+  padding-right: 5px;
+}
+
+.income .amount {
+  border-right: 10px solid green;
+  color: black;
+  border-radius: 2px;
+  padding-right: 5px;
 }

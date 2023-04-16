@@ -17,26 +17,28 @@
           <section id="balanceDisplay" class="balance-display">
             <div class="your-balance">
               <h2>YOUR BALANCE</h2>
-              <p class="balance-total">$999</p>
+              <p class="balance-total" id="balanceTotal">$999</p>
             </div>
 
             <div class="balance-box left">
               <h3>INCOME</h3>
-              <p class="income-total">Income Total</p>
+              <p class="income-total" id="incomeTotal">0</p>
             </div>
 
             <div class="balance-box left">
-              <h3>EXPENSE</h3>
-              <p class="expense-total">Expense Total</p>
+              <h3>Expense</h3>
+              <p class="expense-total" id="expenseTotal">0</p>
             </div>
           </section>
           <section id="expenseHistory" class="expense-history">
             <h2 class="history-headings u-line">History</h2>
             <div class="expense">
-              <p>Shoes</p>
+              <p class="description">Shoes</p>
+              <p class="amount negative">$40</p>
             </div>
             <div class="income">
-              <p>Pay</p>
+              <p class="description">Pay</p>
+              <p class="amount">$800</p>
             </div>
           </section>
           <section id="newExpense" class="new-expense">
@@ -44,8 +46,8 @@
             <div class="input-div">
               <h4 class="description-heading">Transaction Description</h4>
               <input
-                id="transactionInput"
-                class="transaction-input"
+                id="descriptionInput"
+                class="description-input"
                 type="text"
               />
             </div>
