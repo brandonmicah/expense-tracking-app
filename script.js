@@ -22,6 +22,11 @@ const descriptionInput = document.getElementById("descriptionInput");
 const amountInput = document.getElementById("amountInput");
 const addButton = document.getElementById("addButton");
 
+// Variables
+let balanceSum = 0;
+let newExpenseTotal = 0;
+let newIncomeTotal = 0;
+
 // button click event
 addButton.addEventListener("click", function () {
   console.log("clicked");
@@ -35,9 +40,7 @@ addButton.addEventListener("click", function () {
     alert("Amount must be an integer!");
   }
   //   add or subtract amountInput to balance from balance.
-  let newExpenseTotal = 0;
-  let newIncomeTotal = 0;
-  if (amountInput.value.startsWith("-")) {
+  if (amountInput.value.startsWith("-") && amountInput.value != "") {
     // Remve the negative sign & assign input value to a variable
     let negativeInput = amountInput.value.slice(1);
     // convert the input into a interger
@@ -47,6 +50,10 @@ addButton.addEventListener("click", function () {
     // Convert the expenseTotal inner html to newExpenseTotal amount
     expenseTotal.innerHTML = `$${newExpenseTotal}`;
     // TODO --- Figure out how to store the value of the newExpenseTotal so that it's stays up to date every time something is added
+    // Subtract the newExpense from the balanceSum
+    balanceSum -= newExpense;
+    // Change the display to the new value of balanceSum
+    balanceTotal.innerHTML = `$${balanceSum}`;
     // ---creating new divs in expenseHistory
     // Onclick create a new div
     const newDiv = document.createElement("div");
@@ -66,7 +73,7 @@ addButton.addEventListener("click", function () {
     amountP.innerHTML = `${amountInput.value}`;
     //   Add the new div as a child to expenseHistory section
     expenseHistory.appendChild(newDiv);
-  } else {
+  } else if (descriptionInput.value != "") {
     // ---changing the values------
     // Assign positiveInput variable to the value of the amount input
     let positiveInput = amountInput.value;
@@ -76,7 +83,11 @@ addButton.addEventListener("click", function () {
     newIncomeTotal += newIncome;
     // innerHTMl of incomeTotal = newIncomeTotal
     incomeTotal.innerHTML = `${newIncomeTotal}`;
-    // ---creating new divs in expenseHistory
+    // Add the newIncome to the balanceSum
+    balanceSum += newIncome;
+    // Change the display to the new value of balanceSum
+    balanceTotal.innerHTML = `$${balanceSum}`;
+    // ---creating new divs in expenseHistory---
     // Onclick create a new div
     const newDiv = document.createElement("div");
     //   Add class income to new  div
