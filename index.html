@@ -22,22 +22,22 @@
 
             <div class="balance-box left">
               <h3>INCOME</h3>
-              <p class="income-total" id="incomeTotal">0</p>
+              <p class="income-total" id="incomeTotal">$0</p>
             </div>
 
             <div class="balance-box left">
               <h3>EXPENSES</h3>
-              <p class="expense-total" id="expenseTotal">0</p>
+              <p class="expense-total" id="expenseTotal">$0</p>
             </div>
           </section>
           <section id="expenseHistory" class="expense-history">
             <h2 class="history-headings u-line">History</h2>
-            <div class="expense">
+            <div class="hidden expense">
               <p class="description">Shoes</p>
               <p class="amount negative">40</p>
             </div>
-            <div class="income">
-              <p class="description">Pay</p>
+            <div id="exampleExpense" class="income">
+              <p class="description">Pay **Example**</p>
               <p class="amount">800</p>
             </div>
           </section>
@@ -53,10 +53,14 @@
             </div>
             <div class="input-div">
               <h4 class="amount-heading">Amount</h4>
-              <p>For an expense use a negative symbol</p>
+              <p>For an expense use a negative ( - ) symbol.</p>
+              <p>Omit dollar ($) symbol.</p>
               <input type="text" name="input" id="amountInput" />
             </div>
             <button id="addButton" class="add-button">Add Transaction</button>
+            <button id="clearButton" class="clear-button">
+              Clear Transaction history
+            </button>
           </section>
         </div>
       </div>

@@ -27,9 +27,33 @@ let balanceSum = 0;
 let newExpenseTotal = 0;
 let newIncomeTotal = 0;
 
-// button click event
-addButton.addEventListener("click", function () {
-  console.log("clicked");
+// WHen the refresh is pressed the
+// expenseTotal is reset
+// expenseHistory is reset
+// When page is first loaded the expenseHistory is sset to $0
+
+// Functions to save data when page is refreshed and show data when page is opened
+function saveData() {
+  localStorage.setItem("data", expenseHistory.innerHTML);
+  localStorage.setItem("balance", balanceTotal.innerHTML);
+  localStorage.setItem("income", incomeTotal.innerHTML);
+
+  localStorage.setItem("expense", expenseTotal.innerHTML);
+
+  localStorage.setItem("balanceSum", balanceSum);
+  localStorage.setItem("newExpenseTotal", newExpenseTotal);
+  localStorage.setItem("newIncomeTotal", newIncomeTotal);
+}
+
+function showData() {
+  // expenseHistory.innerHTML = localStorage.getItem("data");
+  balanceTotal.innerHTML = localStorage.getItem("balance");
+  incomeTotal.innerHTML = localStorage.getItem("income");
+  // expenseHistory.innerHTML = localStorage.getItem("expense");
+}
+
+// Event function for click and keydown
+const eventFunction = function () {
   //   Missing input prompt
   if (amountInput.value === "") {
     alert("You need to enter an amount!");
@@ -82,7 +106,7 @@ addButton.addEventListener("click", function () {
     // Add newIncome to newIncomeTotal
     newIncomeTotal += newIncome;
     // innerHTMl of incomeTotal = newIncomeTotal
-    incomeTotal.innerHTML = `${newIncomeTotal}`;
+    incomeTotal.innerHTML = `$${newIncomeTotal}`;
     // Add the newIncome to the balanceSum
     balanceSum += newIncome;
     // Change the display to the new value of balanceSum
@@ -108,6 +132,46 @@ addButton.addEventListener("click", function () {
     expenseHistory.appendChild(newDiv);
   }
 
+  saveData();
+  document.getElementById("exampleExpense").classList.add("hidden");
   amountInput.value = "";
   descriptionInput.value = "";
+};
+
+// Calling showData() first as page is opened
+showData();
+
+// button click event
+addButton.addEventListener("click", function () {
+  console.log("clicked");
+  eventFunction();
+});
+
+// Enter keydown event
+window.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    console.log("Enter was pressed");
+    eventFunction();
+  }
+});
+
+// Function to clear stored data
+// function clearStorage() {
+//   localStorage.clear();
+// }
+function clearStorage() {
+  localStorage.removeItem("data", expenseHistory.innerHTML);
+  localStorage.removeItem("balance", balanceTotal.innerHTML);
+  localStorage.setItem("balance", "$0");
+  localStorage.setItem("income", "$0");
+  localStorage.setItem("expense", "$0");
+  localStorage.setItem("balanceSum", 0);
+  localStorage.setItem("newExpenseTotal", 0);
+  localStorage.setItem("newIncomeTotal", 0);
+}
+
+// Event that clears the localStorage ..sets it to ""
+document.getElementById("clearButton").addEventListener("click", function () {
+  clearStorage();
+  document.location.reload();
 });

@@ -148,11 +148,28 @@ section {
 .add-button {
   display: block;
   width: 100%;
+  background-color: green;
+  border: 2px solid black;
+  font-weight: 500;
+  letter-spacing: 2px;
+  border-radius: 3px;
+}
+
+.clear-button {
+  display: block;
+  width: 100%;
   background-color: red;
   border: 2px solid black;
   font-weight: 500;
   letter-spacing: 2px;
   border-radius: 3px;
+  margin: 6px 0;
+}
+
+.add-button:hover,
+.clear-button:hover {
+  cursor: pointer;
+  color: white;
 }
 
 input {
@@ -205,4 +222,7 @@ input {
   color: black;
   border-radius: 2px;
   padding-right: 5px;
+}
+
+.flex-container {
 }
