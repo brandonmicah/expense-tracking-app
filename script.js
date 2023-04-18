@@ -21,39 +21,54 @@ const expenseHistory = document.getElementById("expenseHistory");
 const descriptionInput = document.getElementById("descriptionInput");
 const amountInput = document.getElementById("amountInput");
 const addButton = document.getElementById("addButton");
+const clearButton = document.getElementById("clearButton");
+const expenseList = document.getElementById("expenseList");
 
 // Variables
 let balanceSum = 0;
 let newExpenseTotal = 0;
 let newIncomeTotal = 0;
+let newBrowser = true;
+// If the newBrowser is true, switch the browser to false and execute getItems functions which swithces newBroswer to false
+// Store newBrowser as false in localStorage
+// Use clearButton to set browser to true again.
+// if(newBrowser === false) {
+//  getData();
+//  newBrowser = true;
+// //  newBrowser = false;
+// }
+startingCondition();
 
-// WHen the refresh is pressed the
-// expenseTotal is reset
-// expenseHistory is reset
-// When page is first loaded the expenseHistory is sset to $0
+// window.onload = function() {
+//     var reloading = sessionStorage.getItem("reloading");
+//     if (reloading) {
+//         sessionStorage.removeItem("reloading");
+//         getData();
+//     }
+// }
 
-// Functions to save data when page is refreshed and show data when page is opened
+// function reloadP() {
+//     sessionStorage.setItem("reloading", "true");
+//     document.location.reload();
+// }
+
+// Function that reloads the page
+function pageReload() {
+  // newBrowser = false;
+  // localStorage.clear();
+  window.location.reload();
+}
+
 function saveData() {
-  localStorage.setItem("data", expenseHistory.innerHTML);
-  localStorage.setItem("balance", balanceTotal.innerHTML);
-  localStorage.setItem("income", incomeTotal.innerHTML);
-
-  localStorage.setItem("expense", expenseTotal.innerHTML);
-
-  localStorage.setItem("balanceSum", balanceSum);
-  localStorage.setItem("newExpenseTotal", newExpenseTotal);
-  localStorage.setItem("newIncomeTotal", newIncomeTotal);
+  localStorage.setItem("liData", expenseList.innerHTML);
 }
 
-function showData() {
-  // expenseHistory.innerHTML = localStorage.getItem("data");
-  balanceTotal.innerHTML = localStorage.getItem("balance");
-  incomeTotal.innerHTML = localStorage.getItem("income");
-  // expenseHistory.innerHTML = localStorage.getItem("expense");
+function startingCondition() {
+  let newBrowser = true;
+  expenseList.innerHTML = localStorage.getItem("liData");
 }
 
-// Event function for click and keydown
-const eventFunction = function () {
+function addTrasnaction() {
   //   Missing input prompt
   if (amountInput.value === "") {
     alert("You need to enter an amount!");
@@ -78,11 +93,11 @@ const eventFunction = function () {
     balanceSum -= newExpense;
     // Change the display to the new value of balanceSum
     balanceTotal.innerHTML = `$${balanceSum}`;
-    // ---creating new divs in expenseHistory
+    // ---creating new li in expenseHistory
     // Onclick create a new div
-    const newDiv = document.createElement("div");
+    const newLi = document.createElement("li");
     //   Add class income to new  div
-    newDiv.classList.add("expense");
+    newLi.classList.add("expense");
     // Create new two new paragraphs elements
     const descriptionP = document.createElement("p");
     const amountP = document.createElement("p");
@@ -90,13 +105,15 @@ const eventFunction = function () {
     descriptionP.classList.add("description");
     amountP.classList.add("amount");
     // Add new paragraph elements to new div tag
-    newDiv.appendChild(descriptionP);
-    newDiv.appendChild(amountP);
+    newLi.appendChild(descriptionP);
+    newLi.appendChild(amountP);
+    // add new Li to expenseList
+    expenseList.appendChild(newLi);
     // Add the value to the inputs into the paragraphs inner html
     descriptionP.innerHTML = descriptionInput.value;
     amountP.innerHTML = `${amountInput.value}`;
     //   Add the new div as a child to expenseHistory section
-    expenseHistory.appendChild(newDiv);
+    expenseHistory.appendChild(newLi);
   } else if (descriptionInput.value != "") {
     // ---changing the values------
     // Assign positiveInput variable to the value of the amount input
@@ -113,9 +130,9 @@ const eventFunction = function () {
     balanceTotal.innerHTML = `$${balanceSum}`;
     // ---creating new divs in expenseHistory---
     // Onclick create a new div
-    const newDiv = document.createElement("div");
+    const newLi = document.createElement("li");
     //   Add class income to new  div
-    newDiv.classList.add("income");
+    newLi.classList.add("income");
     // Create new two new paragraphs elements
     const descriptionP = document.createElement("p");
     const amountP = document.createElement("p");
@@ -123,55 +140,34 @@ const eventFunction = function () {
     descriptionP.classList.add("description");
     amountP.classList.add("amount");
     // Add new paragraph elements to new div tag
-    newDiv.appendChild(descriptionP);
-    newDiv.appendChild(amountP);
+    newLi.appendChild(descriptionP);
+    newLi.appendChild(amountP);
+    // add new Li to expenseList
+    expenseList.appendChild(newLi);
     // Add the value to the inputs into the paragraphs inner html
     descriptionP.innerHTML = descriptionInput.value;
     amountP.innerHTML = `${amountInput.value}`;
     //   Add the new div as a child to expenseHistory section
-    expenseHistory.appendChild(newDiv);
+    expenseHistory.appendChild(newLi);
   }
-
+  // reloadP();
   saveData();
-  document.getElementById("exampleExpense").classList.add("hidden");
   amountInput.value = "";
   descriptionInput.value = "";
-};
-
-// Calling showData() first as page is opened
-showData();
+}
 
 // button click event
 addButton.addEventListener("click", function () {
-  console.log("clicked");
-  eventFunction();
+  addTrasnaction();
 });
 
-// Enter keydown event
 window.addEventListener("keydown", function (e) {
   if (e.key === "Enter") {
-    console.log("Enter was pressed");
-    eventFunction();
+    addTrasnaction();
   }
 });
 
-// Function to clear stored data
-// function clearStorage() {
-//   localStorage.clear();
-// }
-function clearStorage() {
-  localStorage.removeItem("data", expenseHistory.innerHTML);
-  localStorage.removeItem("balance", balanceTotal.innerHTML);
-  localStorage.setItem("balance", "$0");
-  localStorage.setItem("income", "$0");
-  localStorage.setItem("expense", "$0");
-  localStorage.setItem("balanceSum", 0);
-  localStorage.setItem("newExpenseTotal", 0);
-  localStorage.setItem("newIncomeTotal", 0);
-}
-
-// Event that clears the localStorage ..sets it to ""
-document.getElementById("clearButton").addEventListener("click", function () {
-  clearStorage();
-  document.location.reload();
+clearButton.addEventListener("click", function () {
+  // newBrowser = true;
+  console.log(newBrowser);
 });
