@@ -29,43 +29,26 @@ let balanceSum = 0;
 let newExpenseTotal = 0;
 let newIncomeTotal = 0;
 let newBrowser = true;
-// If the newBrowser is true, switch the browser to false and execute getItems functions which swithces newBroswer to false
-// Store newBrowser as false in localStorage
-// Use clearButton to set browser to true again.
-// if(newBrowser === false) {
-//  getData();
-//  newBrowser = true;
-// //  newBrowser = false;
-// }
-startingCondition();
 
-// window.onload = function() {
-//     var reloading = sessionStorage.getItem("reloading");
-//     if (reloading) {
-//         sessionStorage.removeItem("reloading");
-//         getData();
-//     }
-// }
+restoreData();
+function initVals() {
+  expenseTotal.textContent = "$0";
+  balanceTotal.textContent = "$0";
+  incomeTotal.textContent = "$0";
+}
 
-// function reloadP() {
-//     sessionStorage.setItem("reloading", "true");
-//     document.location.reload();
-// }
-
-// Function that reloads the page
-function pageReload() {
-  // newBrowser = false;
-  // localStorage.clear();
-  window.location.reload();
+function restoreData() {
+  expenseList.innerHTML = localStorage.getItem("liData");
+  balanceTotal.innerHTML = localStorage.getItem("balaceSum");
+  expenseTotal.innerHTML = localStorage.getItem("newExpenseTotal");
+  incomeTotal.innerHTML = localStorage.getItem("newIncomeTotal");
 }
 
 function saveData() {
   localStorage.setItem("liData", expenseList.innerHTML);
-}
-
-function startingCondition() {
-  let newBrowser = true;
-  expenseList.innerHTML = localStorage.getItem("liData");
+  localStorage.setItem("balaceSum", balanceTotal.innerHTML);
+  localStorage.setItem("newExpenseTotal", expenseTotal.innerHTML);
+  localStorage.setItem("newIncomeTotal", incomeTotal.innerHTML);
 }
 
 function addTrasnaction() {
@@ -112,8 +95,6 @@ function addTrasnaction() {
     // Add the value to the inputs into the paragraphs inner html
     descriptionP.innerHTML = descriptionInput.value;
     amountP.innerHTML = `${amountInput.value}`;
-    //   Add the new div as a child to expenseHistory section
-    expenseHistory.appendChild(newLi);
   } else if (descriptionInput.value != "") {
     // ---changing the values------
     // Assign positiveInput variable to the value of the amount input
@@ -147,13 +128,12 @@ function addTrasnaction() {
     // Add the value to the inputs into the paragraphs inner html
     descriptionP.innerHTML = descriptionInput.value;
     amountP.innerHTML = `${amountInput.value}`;
-    //   Add the new div as a child to expenseHistory section
-    expenseHistory.appendChild(newLi);
   }
   // reloadP();
-  saveData();
+
   amountInput.value = "";
   descriptionInput.value = "";
+  saveData();
 }
 
 // button click event
@@ -168,6 +148,6 @@ window.addEventListener("keydown", function (e) {
 });
 
 clearButton.addEventListener("click", function () {
-  // newBrowser = true;
-  console.log(newBrowser);
+  localStorage.clear();
+  window.location.reload();
 });
